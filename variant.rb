@@ -15,8 +15,8 @@ class Variant
 		attr_accessor :rs_id, :rs_validated, :rs_suspect, :rs_validations, :rs_validation_number, :rs_ancestral_allele
 		attr_accessor :rs_heterozygosity, :rs_clinical_significance, :rs_maf, :rs_maf_allele, :rs_maf_count, :highest_maf
 		attr_accessor :genomes_1000_freq, :genomes_1000_afr_freq, :genomes_1000_sas_freq, :genomes_1000_eas_freq, :genomes_1000_eur_freq, :genomes_1000_amr_freq
-		attr_accessor :exac_all_freq, :exac_afr_freq, :exac_amr_freq, :exac_eas_freq, :exac_sas_freq, :exac_nfe_freq, :exac_fin_freq, :exac_oth_freq
-		attr_accessor :exac_afr_hmz,:exac_amr_hmz, :exac_eas_hmz, :exac_sas_hmz, :exac_nfe_hmz, :exac_fin_hmz, :exac_oth_hmz,:exac_filter, :exac_read_depth
+		attr_accessor :gnomad_all_freq, :gnomad_afr_freq, :gnomad_amr_freq, :gnomad_eas_freq, :gnomad_sas_freq, :gnomad_nfe_freq, :gnomad_fin_freq, :gnomad_oth_freq
+		attr_accessor :gnomad_afr_hmz,:gnomad_amr_hmz, :gnomad_eas_hmz, :gnomad_sas_hmz, :gnomad_nfe_hmz, :gnomad_fin_hmz, :gnomad_oth_hmz,:gnomad_filter, :gnomad_read_depth
 		attr_accessor :esp_ref_ea_count, :esp_ref_aa_count, :esp_ref_all_count, :esp_alt_ea_count, :esp_alt_aa_count
 		attr_accessor :esp_alt_all_count, :esp_ea_maf, :esp_aa_maf, :esp_all_maf, :esp_ea_aaf, :esp_aa_aaf, :esp_all_aaf, :esp_avg_read_depth                                                                               
 		attr_accessor :hgmd_id, :hgmd_phenotype, :hgmd_pub_med_id, :hgmd_sub_category                                                                                                                                      
@@ -39,7 +39,7 @@ class Variant
 		end
 
 		def variable_order						
-				variable_order = [:reason_for_selection, :exac_all_freq, :highest_maf, :gene, :transcripts, :proband_genotype, :assembly, :position, :genomic_dna_start, :genomic_dna_end, :genomic_nomen, :coding_effect, :var_type, :var_location]
+				variable_order = [:reason_for_selection, :gnomad_all_freq, :highest_maf, :gene, :transcripts, :proband_genotype, :assembly, :position, :genomic_dna_start, :genomic_dna_end, :genomic_nomen, :coding_effect, :var_type, :var_location]
 				variable_order = variable_order + [:complementary_dna_start, :complementary_dna_end, :cdna_nomen]
 				variable_order = variable_order + [:exon, :intron, :distance_nearest_splice_site, :nearest_splice_site_type, :nearest_splice_site_change]
 				variable_order = variable_order + [:transcript_length, :protein, :uniprot]
@@ -50,8 +50,8 @@ class Variant
 				variable_order = variable_order + [:rs_id, :rs_validated, :rs_suspect, :rs_validations, :rs_validation_number, :rs_ancestral_allele]
 				variable_order = variable_order + [:rs_heterozygosity, :rs_clinical_significance, :rs_maf, :rs_maf_allele, :rs_maf_count]
 				variable_order = variable_order + [:genomes_1000_freq, :genomes_1000_afr_freq,	:genomes_1000_sas_freq, :genomes_1000_eas_freq, :genomes_1000_eur_freq, :genomes_1000_amr_freq]
-				variable_order = variable_order + [:exac_all_freq, :exac_afr_freq, :exac_amr_freq, :exac_eas_freq, :exac_sas_freq, :exac_nfe_freq, :exac_fin_freq, :exac_oth_freq	]
-				variable_order = variable_order + [:exac_afr_hmz,:exac_amr_hmz, :exac_eas_hmz, :exac_sas_hmz, :exac_nfe_hmz, :exac_fin_hmz, :exac_oth_hmz,:exac_filter, :exac_read_depth]
+				variable_order = variable_order + [:gnomad_all_freq, :gnomad_afr_freq, :gnomad_amr_freq, :gnomad_eas_freq, :gnomad_sas_freq, :gnomad_nfe_freq, :gnomad_fin_freq, :gnomad_oth_freq	]
+				variable_order = variable_order + [:gnomad_afr_hmz,:gnomad_amr_hmz, :gnomad_eas_hmz, :gnomad_sas_hmz, :gnomad_nfe_hmz, :gnomad_fin_hmz, :gnomad_oth_hmz,:gnomad_filter, :gnomad_read_depth]
 				variable_order = variable_order + [:esp_ref_ea_count, :esp_ref_aa_count, :esp_ref_all_count, :esp_alt_ea_count, :esp_alt_aa_count]
 				variable_order = variable_order + [:esp_alt_all_count, :esp_ea_maf, :esp_aa_maf, :esp_all_maf, :esp_ea_aaf,	:esp_aa_aaf, :esp_all_aaf, :esp_avg_read_depth]                                                                             				                        
 				variable_order = variable_order + [:hgmd_id, :hgmd_phenotype, :hgmd_pub_med_id, :hgmd_sub_category]
@@ -180,7 +180,7 @@ class Variant
 		def find_highest_maf()
 			
 			maf_array = [self.genomes_1000_freq, self.genomes_1000_afr_freq, self.genomes_1000_sas_freq, self.genomes_1000_eas_freq, self.genomes_1000_eur_freq, self.genomes_1000_amr_freq]
-			maf_array += [self.rs_maf, self.exac_afr_freq, self.exac_amr_freq, self.exac_eas_freq, self.exac_sas_freq, self.exac_nfe_freq, self.exac_oth_freq, self.exac_all_freq]
+			maf_array += [self.rs_maf, self.gnomad_afr_freq, self.gnomad_amr_freq, self.gnomad_eas_freq, self.gnomad_sas_freq, self.gnomad_nfe_freq, self.gnomad_oth_freq, self.gnomad_all_freq]
 			maf_array.collect!{|maf| maf.nil? ? 0 : maf }
 			self.highest_maf = maf_array.max
 			
@@ -188,7 +188,7 @@ class Variant
 		
 		def check_maf_cutoff(maf_cutoff)
 			check_cutoff = false
-			if self.exac_all_freq.to_f <= maf_cutoff.to_f
+			if self.gnomad_all_freq.to_f <= maf_cutoff.to_f
 				check_cutoff = true
 			else
 				check_cutoff = false

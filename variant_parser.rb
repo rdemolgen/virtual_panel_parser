@@ -97,24 +97,23 @@ class VariantParser
   				this_variant.genomes_1000_eas_freq  			= csv.first[:"1000g_eas_af"]
   				this_variant.genomes_1000_eur_freq  			= csv.first[:"1000g_eur_af"]
   				this_variant.genomes_1000_amr_freq  			= csv.first[:"1000g_amr_af"]
-  				this_variant.exac_all_freq       					= csv.first[:exacallfreq]
-  				this_variant.exac_afr_freq								= csv.first[:exacafrfreq]
-  				this_variant.exac_amr_freq								= csv.first[:exacamrfreq]
-  				this_variant.exac_eas_freq								= csv.first[:exaceasfreq]
-  				this_variant.exac_sas_freq								= csv.first[:exacsasfreq]
-  				this_variant.exac_nfe_freq								= csv.first[:exacnfefreq]
-  				this_variant.exac_fin_freq								= csv.first[:exacfinfreq]
-  				this_variant.exac_oth_freq								= csv.first[:exacothfreq]
-  				                                        	
-  				this_variant.exac_afr_hmz       					= csv.first[:exacafrhmz]
-  				this_variant.exac_amr_hmz									= csv.first[:exacamrhmz]
-  				this_variant.exac_eas_hmz									= csv.first[:exaceashmz]
-  				this_variant.exac_sas_hmz									= csv.first[:exacsashmz]
-  				this_variant.exac_nfe_hmz									= csv.first[:exacnfehmz]
-  				this_variant.exac_fin_hmz									= csv.first[:exacfinhmz]
-  				this_variant.exac_oth_hmz									= csv.first[:exacothhmz]
-  				this_variant.exac_filter         	  			= csv.first[:exacfilter]
-  				this_variant.exac_read_depth        			= csv.first[:exacreaddepth]
+  				this_variant.gnomad_all_freq              			= csv.first[:gnomadaltfreq_all]
+  				this_variant.gnomad_afr_freq              			= csv.first[:gnomadaltfreq_afr]
+  				this_variant.gnomad_amr_freq              			= csv.first[:gnomadaltfreq_amr]
+  				this_variant.gnomad_eas_freq              			= csv.first[:gnomadaltfreq_eas]
+  				this_variant.gnomad_sas_freq              			= csv.first[:gnomadaltfreq_sas]
+  				this_variant.gnomad_nfe_freq              			= csv.first[:gnomadaltfreq_nfe]
+  				this_variant.gnomad_fin_freq              			= csv.first[:gnomadaltfreq_fin]
+  				this_variant.gnomad_oth_freq              			= csv.first[:gnomadaltfreq_oth]
+  				this_variant.gnomad_afr_hmz              			= csv.first[:gnomadhomfreq_afr]
+  				this_variant.gnomad_amr_hmz              			= csv.first[:gnomadhomfreq_amr]
+  				this_variant.gnomad_eas_hmz              			= csv.first[:gnomadhomfreq_eas]
+  				this_variant.gnomad_sas_hmz             			= csv.first[:gnomadhomfreq_sas]
+  				this_variant.gnomad_nfe_hmz              			= csv.first[:gnomadhomfreq_nfe]
+  				this_variant.gnomad_fin_hmz              			= csv.first[:gnomadhomfreq_fin]
+  				this_variant.gnomad_oth_hmz              			= csv.first[:gnomadhomfreq_oth]
+  				this_variant.gnomad_filter         	  	 		= csv.first[:gnomadfilter]
+  				this_variant.gnomad_read_depth        	 			= csv.first[:gnomadreaddepth]
   				this_variant.clin_var_ids           			= csv.first[:clinvarids]
   				this_variant.clin_var_origins    	  			= csv.first[:clinvarorigins]
   				this_variant.clin_var_methods    	 	 			= csv.first[:clinvarmethods]
@@ -345,7 +344,7 @@ class VariantParser
   	opt :proband_sample, "Proband sample ID to include in output", :type => String
   	opt :clinvar, "Include ClinVar pathogenic candidates (CliniVarClinSignifs: Pathogenic; ClinVarReviewStatus: 3 or 4; ClinVarOrigins: Germline)."
   	opt :research, "Select variants on research criteria.", :default => false
-  	opt :maf_cutoff, "Set a Minor Allele Frequency (MAF) cutoff - integer out of 1 based on ExAC all populations frequencies.", :default => 0.05
+  	opt :maf_cutoff, "Set a Minor Allele Frequency (MAF) cutoff - integer out of 1 based on gnomad all populations frequencies.", :default => 0.05
   	opt :result_prefix, "Set the prefix for the result file output, for example Family ID. Defaults to the directory name two levels up from the Alamut variant file."
   	opt :all, "Parse all variants without a genelist", :default => false
   end
