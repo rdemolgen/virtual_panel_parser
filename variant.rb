@@ -17,6 +17,7 @@ class Variant
 		attr_accessor :genomes_1000_freq, :genomes_1000_afr_freq, :genomes_1000_sas_freq, :genomes_1000_eas_freq, :genomes_1000_eur_freq, :genomes_1000_amr_freq
 		attr_accessor :gnomad_all_freq, :gnomad_afr_freq, :gnomad_amr_freq, :gnomad_eas_freq, :gnomad_sas_freq, :gnomad_nfe_freq, :gnomad_fin_freq, :gnomad_oth_freq
 		attr_accessor :gnomad_afr_hmz,:gnomad_amr_hmz, :gnomad_eas_hmz, :gnomad_sas_hmz, :gnomad_nfe_hmz, :gnomad_fin_hmz, :gnomad_oth_hmz,:gnomad_filter, :gnomad_read_depth
+		attr_accessor :gnomad_het_count, :gnomad_hom_count, :gnomad_hem_count
 		attr_accessor :esp_ref_ea_count, :esp_ref_aa_count, :esp_ref_all_count, :esp_alt_ea_count, :esp_alt_aa_count
 		attr_accessor :esp_alt_all_count, :esp_ea_maf, :esp_aa_maf, :esp_all_maf, :esp_ea_aaf, :esp_aa_aaf, :esp_all_aaf, :esp_avg_read_depth                                                                               
 		attr_accessor :hgmd_id, :hgmd_phenotype, :hgmd_pub_med_id, :hgmd_sub_category                                                                                                                                      
@@ -39,8 +40,8 @@ class Variant
 		end
 
 		def variable_order						
-				variable_order = [:reason_for_selection, :gnomad_all_freq, :highest_maf, :gene, :transcripts, :proband_genotype, :assembly, :position, :genomic_dna_start, :genomic_dna_end, :genomic_nomen, :coding_effect, :var_type, :var_location]
-				variable_order = variable_order + [:complementary_dna_start, :complementary_dna_end, :cdna_nomen]
+				variable_order = [:reason_for_selection, :gene, :var_type, :coding_effect, :proband_genotype, :genomic_nomen, :cdna_nomen, :gnomad_het_count, :gnomad_hom_count, :gnomad_hem_count]
+				variable_order = variable_order + [:gnomad_all_freq, :highest_maf,  :transcripts, :assembly, :position, :genomic_dna_start, :genomic_dna_end, :var_location, :complementary_dna_start, :complementary_dna_end]
 				variable_order = variable_order + [:exon, :intron, :distance_nearest_splice_site, :nearest_splice_site_type, :nearest_splice_site_change]
 				variable_order = variable_order + [:transcript_length, :protein, :uniprot]
 				variable_order = variable_order + [:protein_nomen, :alt_protein_nomen, :exon, :intron, :omim_id]
