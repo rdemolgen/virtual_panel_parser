@@ -2,7 +2,7 @@ class VariantParser
   require 'yaml'
   require 'smarter_csv'
   require 'spreadsheet'
-  require 'trollop'
+  require 'optimist'
   require 'ruby-progressbar'
   require 'digest/bubblebabble'
   require_relative 'variant'
@@ -337,7 +337,7 @@ class VariantParser
   	  return workbook
   end
 
-  opts = Trollop::options do
+  opts = Optimist::options do
   	opt :variants, "Filepath to Alamut file to parse.", :type => String
   	opt :fake_exome_depth, "Filepath to fake Exome Depth file to parse.", :type => String
   	opt :genes, "Filepath to text file with list of valid HGVS gene symbols - one symbol per line.", :type => String
@@ -352,7 +352,7 @@ class VariantParser
   	opt :all, "Parse all variants without a genelist", :default => false
   end
   
-  #Trollop::die :alamut_file, "Alamut file must exist." unless File.exist?(opts[:alamut_file]) if opts[:alamut_file]
+  #Optimist::die :alamut_file, "Alamut file must exist." unless File.exist?(opts[:alamut_file]) if opts[:alamut_file]
 
   variants_filepath = opts[:variants]
   cnvs_filepath = opts[:fake_exome_depth]
