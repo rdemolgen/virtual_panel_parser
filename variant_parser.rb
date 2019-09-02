@@ -347,7 +347,7 @@ class VariantParser
   	opt :proband_sample, "Proband sample ID to include in output", :type => String
   	opt :clinvar, "Include ClinVar pathogenic candidates (CliniVarClinSignifs: Pathogenic; ClinVarReviewStatus: 3 or 4; ClinVarOrigins: Germline)."
   	opt :research, "Select variants on research criteria.", :default => false
-  	opt :maf_cutoff, "Set a Minor Allele Frequency (MAF) cutoff - integer out of 1 based on gnomad all populations frequencies.", :default => 0.02
+  	opt :maf_cutoff, "Set a Minor Allele Frequency (MAF) cutoff - integer out of 1 based on gnomad all populations frequencies.", :default => 0.01
   	opt :result_prefix, "Set the prefix for the result file output, for example Family ID. Defaults to the directory name two levels up from the Alamut variant file."
   	opt :all, "Parse all variants without a genelist", :default => false
   end
